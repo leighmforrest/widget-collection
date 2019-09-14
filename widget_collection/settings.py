@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 S3 = config('S3', cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['widget-collection.herokuapp.com', '127.0.0.1', 'localhost', '0.0.0.0']
 
 
 # Application definition
