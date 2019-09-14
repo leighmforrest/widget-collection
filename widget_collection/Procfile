@@ -1,0 +1,1 @@
+web: gunicorn widget_collection.wsgi --log-file -
