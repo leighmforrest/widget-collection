@@ -1,5 +1,10 @@
+.navbar {
+  font-family: "Roboto Mono", monospace;
+}
+
 main {
   margin-bottom: 65px;
+  font-family: "Roboto", sans-serif;
 }
 
 .message-container {
