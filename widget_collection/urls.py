@@ -3,14 +3,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('users/', include('django.contrib.auth.urls')),
-    path('accounts/', include('allauth.urls')),
-    path('', include('pages.urls')),
+    path("admin/", admin.site.urls),
+    path("users/", include("django.contrib.auth.urls")),
+    path("accounts/", include("allauth.urls")),
+    path("pages/", include("pages.urls")),
+    path("", include("widgets.urls", namespace="widgets")),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
-] + urlpatterns
+    urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
+

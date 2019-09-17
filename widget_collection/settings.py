@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     # Local
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
-    'core.apps.CoreConfig'
+    'core.apps.CoreConfig',
+    'widgets.apps.WidgetsConfig'
 ]
 
 MIDDLEWARE = [
@@ -92,9 +93,7 @@ WSGI_APPLICATION = 'widget_collection.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost/widgets')
-}
+DATABASES = {"default": dj_database_url.config(default="sqlite://localhost/data")}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
