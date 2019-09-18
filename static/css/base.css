@@ -43,6 +43,25 @@ main {
   width: 100%;
 }
 
+.card-container a {
+  text-decoration: none;
+  color: black;
+}
+
 .pagination-container {
   position: relative;
+}
+
+.widget-left {
+  float: left;
+}
+
+.widget-left img {
+  width: 100%;
+}
+
+.widget-right {
+  display: inline;
+  float: right;
+  text-align: center;
 }

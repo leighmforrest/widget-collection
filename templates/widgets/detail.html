@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }} - {{ widget.name }}{% endblock title %}
+
+{% block content %}
+<div class="widget">
+    <div class="widget-left col-md-5">
+        <img src="{% static 'images/widget.jpeg' %}" alt="">
+    </div>
+    <div class="widget-right col-md-7">
+        <h2>{{ widget.name }}</h2>
+        <ul class="list-group">
+            {% for note in widget.notes.all %}
+                <li class="list-group-item">{{ note }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}

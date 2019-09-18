@@ -1,7 +1,7 @@
 import uuid
 
 from django.db import models
-from users.models import CustomUser
+from django.urls import reverse
 from django.contrib.auth import get_user_model
 
 
@@ -16,33 +16,44 @@ class BaseModel(models.Model):
 
 class Widget(BaseModel):
     name = models.CharField(max_length=256)
-    curator = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
-                                related_name='widgets')
+    curator = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, related_name="widgets"
+    )
 
     class Meta:
-        permissions = [('curator', 'create update and delete widgets')]
-        ordering = ['-created_at']
+        permissions = [("curator", "create update and delete widgets")]
+        ordering = ["-created_at"]
 
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("widgets:detail", kwargs={"pk": self.pk})
+
 
 class Comment(BaseModel):
     comment = models.TextField()
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
-                             related_name='comments')
-    widget = models.ForeignKey(Widget, on_delete=models.CASCADE,
-                             related_name='comments')
+    user = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, related_name="comments"
+    )
+    widget = models.ForeignKey(
+        Widget, on_delete=models.CASCADE, related_name="comments"
+    )
+
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self):
-        return self.widget.name
+        n = len(self.comment)
+        if n > 75:
+            return self.comment[:75] + "..."
+        return self.comment
 
 
 class Note(BaseModel):
     text = models.CharField(max_length=128)
-    widget = models.ForeignKey(Widget, on_delete=models.CASCADE,
-                               related_name='notes')
+    widget = models.ForeignKey(Widget, on_delete=models.CASCADE, related_name="notes")
 
     def __str__(self):
         return self.text
-    
+

@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from widgets.models import Widget
 
@@ -9,3 +9,8 @@ class WidgetListView(ListView):
     model = Widget
     paginate_by = 6
 
+
+class WidgetDetailView(DetailView):
+    template_name = "widgets/detail.html"
+    context_object_name = "widget"
+    model = Widget
