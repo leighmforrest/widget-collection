@@ -1,12 +1,14 @@
 {% extends '_base.html' %}
 
 {% block content %}
-<div class="card-list">
-      {% for widget in widgets %}
-        {% include 'partials/_card.html' %}
-      {% endfor %}
+<div class="row">
+  <div class="card-list">
+        {% for widget in widgets %}
+          {% include 'partials/_card.html' %}
+        {% endfor %}
+  </div>
 </div>
-<div class="pagination-container">
+<div class="pagination-container row">
     {% include 'partials/_pagination.html' %}
 </div>
 {% endblock content %}

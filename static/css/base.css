@@ -3,8 +3,8 @@
 }
 
 main {
-  margin-bottom: 65px;
   font-family: "Roboto", sans-serif;
+  margin-bottom: 65px;
 }
 
 .message-container {
@@ -12,7 +12,7 @@ main {
 }
 
 .card-list {
-  width: 85vw;
+  width: 80vw;
   margin: 0 auto;
   margin-bottom: 15px;
   display: grid;
@@ -50,6 +50,10 @@ main {
 
 .pagination-container {
   position: relative;
+}
+
+.pagination {
+  margin: 0 auto;
 }
 
 .widget {

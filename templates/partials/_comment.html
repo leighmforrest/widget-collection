@@ -8,4 +8,9 @@
       <footer class="blockquote-footer">{{comment.created_at}}</footer>
     </blockquote>
   </div>
+  {% if comment.user == user %}
+  <div class="card-footer">
+        <a href="{% url 'widgets:comment_update' comment.pk %}">Update</a>
+    </div>  
+  {% endif %}
 </div>
