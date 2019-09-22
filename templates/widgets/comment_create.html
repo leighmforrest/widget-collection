@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }} {{ widget.name }} Comment
+{% endblock title %}
+
+{% block content %}
+<p class="text-center">Post your comment for  <a href="{{ widget.get_absolute_url }}">"{{widget.name}}"</a></p>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Add Comment" class="btn btn-primary">
+</form>
+{% endblock content %}

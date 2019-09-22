@@ -1,0 +1,11 @@
+<div class="card comment-card">
+  <div class="card-header bg-secondary text-white">
+    {{ comment.user.username }}
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{ comment.comment }}</p>
+      <footer class="blockquote-footer">{{comment.created_at}}</footer>
+    </blockquote>
+  </div>
+</div>

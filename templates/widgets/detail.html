@@ -4,17 +4,64 @@
 {% block title %}{{ block.super }} - {{ widget.name }}{% endblock title %}
 
 {% block content %}
-<div class="widget">
-    <div class="widget-left col-md-5">
-        <img src="{% static 'images/widget.jpeg' %}" alt="">
-    </div>
-    <div class="widget-right col-md-7">
-        <h2>{{ widget.name }}</h2>
-        <ul class="list-group">
+  <div class="row">
+  <div class="col-md-5 col-lg-6 mb-4">
+    <div class="card">
+      <div class="view">
+        <img src="{% static 'images/widget.jpeg' %}" class="card-img-top" alt="photo">
+        <a href="#">
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+      <div class="card-body text-center">
+        <!--Title-->
+        <h4 class="card-title">{{ widget.name }}</h4>
+        <!--Text-->
+        <ul class="list-group mb-3">
             {% for note in widget.notes.all %}
                 <li class="list-group-item">{{ note }}</li>
             {% endfor %}
         </ul>
+        {% if user.is_authenticated %}
+          <a href="{% url 'widgets:comment_create' widget.pk %}">Add a Comment</a>
+        {% else %}
+          Want to comment? <a href="{% url 'account_login' %}">Log In!</a>
+        {% endif %}
+      </div>
+
     </div>
-</div>
+    <!--/.Card-->
+
+  </div>
+  <!-- Grid column -->
+
+  <!-- Grid column -->
+  <div class="col-md-7 col-lg-6 mb-4">
+
+    <!--Card-->
+    <div class="card green darken-3 h-100">
+
+      <!--Card image-->
+      <div class="view">
+        <a href="#">
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!--Card content-->
+      <div class="card-body text-center">
+        <!--Title-->
+        <h4 class="card-title white-text">Comments</h4>
+        <!--Text-->
+        {% for comment in widget.comments.all %}
+            {% include 'partials/_comment.html' %}
+        {% endfor %}
+      </div>
+
+    </div>
+    <!--/.Card-->
+
+  </div>
+  <!-- Grid column -->
+  </div>
 {% endblock content %}
