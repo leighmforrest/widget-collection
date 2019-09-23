@@ -72,6 +72,7 @@ class CommentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 class CommentDeleteView(DeleteView):
     model = Comment
+    context_object_name = "comment"
     template_name = "widgets/comment_delete.html"
 
     def get_success_url(self):

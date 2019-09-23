@@ -23,7 +23,7 @@
             {% endfor %}
         </ul>
         {% if user.is_authenticated %}
-          <a href="{% url 'widgets:comment_create' widget.pk %}">Add a Comment</a>
+          <a href="{% url 'widgets:comment_create' widget.pk %}" class="btn btn-primary">Add a Comment</a>
         {% else %}
           Want to comment? <a href="{% url 'account_login' %}">Log In!</a>
         {% endif %}
@@ -41,26 +41,23 @@
     <!--Card-->
     <div class="card green darken-3 h-100">
 
-      <!--Card image-->
-      <div class="view">
-        <a href="#">
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
 
       <!--Card content-->
       <div class="card-body text-center">
         <!--Title-->
         <h4 class="card-title white-text">Comments</h4>
         <!--Text-->
-        {% for comment in widget.comments.all %}
-            {% include 'partials/_comment.html' %}
-        {% endfor %}
+        {% if widget.comments.count %}
+          {% for comment in widget.comments.all %}
+              {% include 'partials/_comment.html' %}
+          {% endfor %}
+        {% else %}
+          <p>There are no comments for this widget.</p>
+        {% endif %}
       </div>
 
     </div>
     <!--/.Card-->
-
   </div>
   <!-- Grid column -->
   </div>

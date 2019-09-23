@@ -1,6 +1,7 @@
 from widgets.tests.mixins import TestDataMixin, random_string
 from widgets.models import Comment
 from django.test import TestCase
+from django.urls import reverse
 
 
 class TestWidget(TestDataMixin, TestCase):
@@ -24,7 +25,8 @@ class TestWidget(TestDataMixin, TestCase):
         self.assertEqual(widget.name, name)
 
     def test_asbolute_url(self):
-        pass
+        widget = self.widget1
+        self.assertEqual(reverse('widgets:detail', kwargs={'pk': widget.pk}), widget.get_absolute_url())
 
 
 class TestComment(TestDataMixin, TestCase):
@@ -58,3 +60,14 @@ class TestComment(TestDataMixin, TestCase):
         content = random_string(15)
         self.test_comment.comment = content
         self.assertEqual(content, str(self.test_comment))
+
+
+class TestNote(TestDataMixin, TestCase):
+    def setUp(self):
+        self.test_note = self.widget1.notes.create(text=random_string(128))
+    
+    def test_note_exits(self):
+        self.assertIsNotNone(self.test_note)
+    
+    def test_note_string(self):
+        self.assertEqual(self.test_note.text, str(self.test_note))

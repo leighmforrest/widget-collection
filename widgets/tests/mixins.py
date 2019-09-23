@@ -40,7 +40,8 @@ class TestDataMixin:
             cls.max_widget.notes.create(text=random_string(128))
 
         # add comments
-        cls.commenter.comments.create(comment=random_string(512), widget=cls.widget1)
+        cls.commenter.comments.create(
+            comment=random_string(512), widget=cls.widget1)
 
     def authenticated_client(self, username, password):
         """Helper to build an authenticated client for tests."""

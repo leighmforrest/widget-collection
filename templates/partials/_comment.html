@@ -9,8 +9,9 @@
     </blockquote>
   </div>
   {% if comment.user == user %}
-  <div class="card-footer">
-        <a href="{% url 'widgets:comment_update' comment.pk %}">Update</a>
+    <div class="card-footer">
+        <a href="{% url 'widgets:comment_update' comment.pk %}"><i class="fa fa-edit"></i></a>
+        <a href="{% url 'widgets:comment_delete' comment.pk %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
     </div>  
   {% endif %}
 </div>

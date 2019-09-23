@@ -5,6 +5,7 @@ from widgets.views import (
     WidgetDetailView,
     CommentCreateView,
     CommentUpdateView,
+    CommentDeleteView,
 )
 
 app_name = "widgets"
@@ -14,5 +15,6 @@ urlpatterns = [
     path("<uuid:pk>", WidgetDetailView.as_view(), name="detail"),
     path("<uuid:pk>/create", CommentCreateView.as_view(), name="comment_create"),
     path("<uuid:pk>/update", CommentUpdateView.as_view(), name="comment_update"),
+    path("<uuid:pk>/delete", CommentDeleteView.as_view(), name="comment_delete"),
 ]
 

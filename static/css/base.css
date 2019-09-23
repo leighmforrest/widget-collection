@@ -77,3 +77,12 @@ main {
   column-count: 1;
   margin-bottom: 25px;
 }
+
+.fa {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: rgb(108,117, 125);
+}
+.fa:hover {
+  color:rgb(52,68,54);
+}
