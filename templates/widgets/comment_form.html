@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }} {{ widget.name }} Comment
+{% endblock title %}
+
+{% block content %}
+{% if update %}
+    <p class="text-center">Update your comment for  <a href="{{ widget.get_absolute_url }}">"{{widget.name}}"</a></p>
+{% else %}
+    <p class="text-center">Post your comment for  <a href="{{ widget.get_absolute_url }}">"{{widget.name}}"</a></p>
+{% endif %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    {% if update %}
+        <input type="submit" value="Update Comment" class="btn btn-primary">
+    {% else %}
+        <input type="submit" value="Add Comment" class="btn btn-primary">
+    {% endif %}
+</form>
+{% endblock content %}

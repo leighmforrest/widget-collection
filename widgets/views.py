@@ -24,7 +24,7 @@ class WidgetDetailView(DetailView):
 
 
 class CommentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    template_name = "widgets/comment_create.html"
+    template_name = "widgets/comment_form.html"
     model = Widget
     form_class = CommentForm
     success_message = "The comment has been created."
@@ -32,6 +32,7 @@ class CommentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["widget"] = Widget.objects.get(pk=self.kwargs["pk"])
+        context["update"] = False
         return context
 
     def get_success_url(self):
@@ -44,7 +45,7 @@ class CommentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 class CommentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    template_name = "widgets/comment_update.html"
+    template_name = "widgets/comment_form.html"
     model = Comment
     form_class = CommentForm
     success_message = "The comment has been updated."
@@ -52,6 +53,7 @@ class CommentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["widget"] = Comment.objects.get(pk=self.kwargs["pk"]).widget
+        context["update"] = True
         return context
 
     def get_success_url(self):
